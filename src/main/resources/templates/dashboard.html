@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="webjars/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="webjars/sockjs-client/1.0.2/sockjs.min.js"></script>
+    <script src="webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
+    <script src="webjars/highcharts/4.1.9/highcharts.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{css/dashboard.css}"/>
+    <script th:src="@{dashboard.js}"></script>
+</head>
+<body>
+<div th:include="header"></div>
+
+<div class="container">
+    <div class='row panel panel-default' id="sensors">
+        <h4 class="text-center">Sensors</h4>
+
+        <div class="col-md-3" th:id="${sensor.getName()}" th:each="sensor : ${availableSensors}"
+             th:onclick="${sensor.isEnabled() ? 'disableSensor('+''''+sensor.getName()+''''+')': 'enableSensor('+''''+sensor.getName()+''''+')'}">
+            <div th:id="${sensor.getName()+'State'}" th:class="${sensor.isEnabled() ? 'card temp tempOn' : 'card temp tempOff'}">
+                <div class="inner">
+                    <div class='icon'/>
+                    <div class='title'>
+                        <span class='text' th:id="${sensor.getName()+'Name'}" th:text="${sensor.getName()}"/>
+                    </div>
+                    <div th:id="${sensor.getName()+'Temperature'}" class='number'>-</div>
+                    <div class='measure'>CELCIUS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row panel panel-default">
+        <h4 class="text-center">Average temperature</h4>
+
+        <div id="averageGraph" class="averageTemperature"/>
+    </div>
+
+    <div class="row">
+        <ul class='list col-md-6 panel panel-default' style="float: left; width: 49%;" id="airconditioners">
+            <span class="label label-primary">Air Conditioners</span>
+            <li class='list__item' th:id="${ac.getName()}" th:each="ac : ${availableAirconditioners}">
+                <span th:id="${ac.getName()+'Name'}" th:text="${ac.getName()}"/>
+                <label class="switch switch--list-item">
+                    <input type="checkbox" th:checked="${ac.isTurnedOn()}" class="switch__input"
+                           th:id="${ac.getName()+'State'}"/>
+
+                    <div class="switch__toggle"></div>
+                </label>
+            </li>
+        </ul>
+
+        <ul class='list col-md-6 panel panel-default' style="float: right; width: 49%;" id="heaters">
+            <span class="label label-primary">Heaters</span>
+            <li class='list__item' th:id="${heater.getName()}" th:each="heater : ${availableHeaters}">
+                <span th:id="${heater.getName()+'Name'}" th:text="${heater.getName()}"/>
+                <label class="switch switch--list-item">
+                    <input type="checkbox" th:checked="${heater.isTurnedOn()}" class="switch__input"
+                           th:id="${heater.getName()+'State'}"/>
+
+                    <div class="switch__toggle"></div>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
