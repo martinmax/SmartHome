@@ -103,7 +103,7 @@ function createNewSensor(data) {
 
     if (element.length == 0) {
         elementDiv.append('<div class="col-md-3" id=\"' + jsonData.name + '\">' +
-            '<div id="' + jsonData.name + 'Name" class="card temp tempOn">' +
+            '<div id="' + jsonData.name + 'State" class="card temp tempOn">' +
             '<div class="inner">' +
             '<div class="icon"/>' +
             '<div class="title">' +
@@ -122,7 +122,7 @@ function createNewAppliance(data, elementDiv) {
         elementDiv.append('<li class="list__item" id=\"' + jsonData.name + '\"> </div > ' +
             '<span id=\"' + jsonData.name + 'Name' + '\">' + jsonData.name + '\t</span>' +
             '<label class="switch switch--list-item">' +
-            '<input type="checkbox" class="switch__input" id="' + jsonData.name + "State" + '"\>' +
+            '<input onclick="return false" type="checkbox" class="switch__input" id="' + jsonData.name + "State" + '"\>' +
             '<div class="switch__toggle"></div>' +
             '</label></li>')
     }
