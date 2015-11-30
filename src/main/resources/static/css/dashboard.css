@@ -1,5 +1,6 @@
 
 .card {
+    max-width: 150px;
     width: 70% !important;
     height: 200px !important;
     margin: 20px auto;
@@ -15,7 +16,7 @@
     background: #F9F9F9;
     border: 1px solid #E3E3E3;
     border-radius: 0px 0px 5px 5px;
-    width: 101%;
+    width: 102%;
     height: 100px;
     position: absolute;
     bottom: -1px;
@@ -72,33 +73,16 @@
     background: GrayText;
 }
 
-.temp .inner .icon {
+.icon {
+    background-image: url(thermometerimage.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: 70px;
     display: block;
     position: absolute;
-    top: -45px;
-    left: 85px;
-    width: 17px;
-    height: 17px;
-    background: #fff;
-    border-radius: 17px;
-    border: 4px solid #ec6f69;
-    box-shadow: 0 0 0 4px #ffffff, 1px 1px 0 4px #de3932;
-}
-
-.temp .inner .icon:before {
-    content: '';
-    display: block;
-    width: 7px;
-    height: 25px;
-    background: #fff;
-    position: absolute;
-    top: -30px;
-    left: 0px;
-    border: 5px solid #ec6f69;
-    border-radius: 10px 10px 0px 0px;
-    border-bottom: 0px none;
-    box-shadow: 0 -4px 0 4px #ffffff, 4px -3px 0 1px #de3932;
-}
+    width: 100%;
+    height: 100%;
+    margin-top: -85px;}
 
 .switch {
     position: relative;

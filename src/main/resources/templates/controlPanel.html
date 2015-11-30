@@ -7,14 +7,25 @@
 </head>
 <div th:include="header"></div>
 <body>
-<button id="addSensorButton" type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Sensor
-</button>
-<button id="addHeaterButton" type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Heater
-</button>
-<button id="addACButton" type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add AC
-</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button id="addSensorButton" type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Sensor
+            </button>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button id="addHeaterButton" type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Heater
+            </button>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button id="addACButton" type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add AC
+            </button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
