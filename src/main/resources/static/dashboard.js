@@ -102,7 +102,7 @@ function createNewSensor(data) {
     var elementDiv = $("#sensors");
 
     if (element.length == 0) {
-        elementDiv.append('<div class="col-md-3" id=\"' + jsonData.name + '\">' +
+        elementDiv.append('<div class="col-md-3 col-xs-6" id=\"' + jsonData.name + '\">' +
             '<div id="' + jsonData.name + 'State" class="card temp tempOn">' +
             '<div class="inner">' +
             '<div class="icon"/>' +

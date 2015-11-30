@@ -16,7 +16,7 @@
     <div class='row panel panel-default' id="sensors">
         <h4 class="text-center">Sensors</h4>
 
-        <div class="col-md-3" th:id="${sensor.getName()}" th:each="sensor : ${availableSensors}"
+        <div class="col-md-3 col-xs-6" th:id="${sensor.getName()}" th:each="sensor : ${availableSensors}"
              th:onclick="${sensor.isEnabled() ? 'disableSensor('+''''+sensor.getName()+''''+')': 'enableSensor('+''''+sensor.getName()+''''+')'}">
             <div th:id="${sensor.getName()+'State'}" th:class="${sensor.isEnabled() ? 'card temp tempOn' : 'card temp tempOff'}">
                 <div class="inner">
