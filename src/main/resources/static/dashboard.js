@@ -60,6 +60,14 @@ var averageTemperatureEventCallback = function (data) {
                     display: 'none'
                 }
             },
+            yAxis: {
+                title: {
+                    text: 'Temperature (°C)'
+                }
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
             legend: {
                 enabled: false
             },
@@ -73,8 +81,7 @@ var averageTemperatureEventCallback = function (data) {
                 line: {
                     dataLabels: {
                         enabled: true
-                    },
-                    enableMouseTracking: false
+                    }
                 }
             },
             series: [{name: 'Average temperature', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}]
