@@ -7,8 +7,8 @@ $(document).ready(function () {
         $.post("/add/heater", {name: randomName("Heater")});
     });
 
-    $("#addACButton").on('click', function () {
-        $.post("/add/ac", {name: randomName("AC")});
+    $("#addCoolerButton").on('click', function () {
+        $.post("/add/cooler", {name: randomName("Cooler")});
     });
 
 })

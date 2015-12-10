@@ -4,6 +4,7 @@ package javaskop.demo.smarthome.core.exception;
  * Created by martin.ilievski on 11/27/2015.
  */
 public class SmartHomeException extends RuntimeException {
+
     public SmartHomeException() {
     }
 

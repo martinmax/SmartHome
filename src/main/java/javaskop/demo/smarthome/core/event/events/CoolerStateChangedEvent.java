@@ -6,11 +6,12 @@ import javaskop.demo.smarthome.core.event.Event;
 /**
  * Created by martin.ilievski on 11/20/2015.
  */
-public class AirConditionStateChangedEvent implements Event {
+public class CoolerStateChangedEvent implements Event {
+
     private boolean state;
     private String name;
 
-    public AirConditionStateChangedEvent(String name, boolean state) {
+    public CoolerStateChangedEvent(String name, boolean state) {
         this.name = name;
         this.state = state;
     }
@@ -22,6 +23,6 @@ public class AirConditionStateChangedEvent implements Event {
 
     @Override
     public String getQueue() {
-        return "airConditionStateEvent";
+        return "coolerStateEvent";
     }
 }

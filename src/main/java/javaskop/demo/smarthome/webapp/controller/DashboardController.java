@@ -1,7 +1,7 @@
 package javaskop.demo.smarthome.webapp.controller;
 
 import javaskop.demo.smarthome.core.SmartHomeRouter;
-import javaskop.demo.smarthome.core.appliance.AirConditioner;
+import javaskop.demo.smarthome.core.appliance.Cooler;
 import javaskop.demo.smarthome.core.appliance.Heater;
 import javaskop.demo.smarthome.core.sensor.TemperatureSensor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,9 @@ public class DashboardController {
         return smartHomeRouter.getAvailableSensors().values();
     }
 
-    @ModelAttribute("availableAirconditioners")
-    public Collection<AirConditioner> availableAirconditioners() {
-        return smartHomeRouter.getAirConditioners();
+    @ModelAttribute("availableCoolers")
+    public Collection<Cooler> availableCoolers() {
+        return smartHomeRouter.getCoolers();
     }
 
     @ModelAttribute("availableHeaters")

@@ -1,6 +1,6 @@
 package javaskop.demo.smarthome.core;
 
-import javaskop.demo.smarthome.core.appliance.AirConditioner;
+import javaskop.demo.smarthome.core.appliance.Cooler;
 import javaskop.demo.smarthome.core.appliance.Heater;
 import javaskop.demo.smarthome.core.event.EventPublisher;
 import javaskop.demo.smarthome.core.event.events.*;
@@ -25,10 +25,11 @@ import java.util.Map;
  */
 @Component
 public class SmartHomeRouter {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SmartHomeRouter.class);
 
-    @Value("${home.smart.ac.limit:20}")
-    private int acLimit;
+    @Value("${home.smart.cooler.limit:20}")
+    private int coolerLimit;
     @Value("${home.smart.heat.limit:18}")
     private int heatLimit;
     @Value("${home.smart.average.buffer:10}")
@@ -41,7 +42,7 @@ public class SmartHomeRouter {
     private PublishSubject<SensorData> temperatureSensorStream = PublishSubject.create();
     private Map<TemperatureSensor, Subscription> activeSensors = new HashMap<>();
     private Map<String, TemperatureSensor> availableSensors = new HashMap<>();
-    private List<AirConditioner> airConditioners = new ArrayList<>();
+    private List<Cooler> coolers = new ArrayList<>();
     private List<Heater> heaters = new ArrayList<>();
 
     @Autowired
@@ -88,13 +89,13 @@ public class SmartHomeRouter {
         LOGGER.info("New heater added to router {}", heater.getName());
     }
 
-    public void addAirConditioner(AirConditioner airCondition) {
-        if (airConditioners.contains(airCondition)) {
+    public void addCooler(Cooler cooler) {
+        if (coolers.contains(cooler)) {
             throw new IllegalStateException("Already  exists.");
         }
-        eventPublisher.publish(new NewAirConditionEvent(airCondition.getName()));
-        airConditioners.add(airCondition);
-        LOGGER.info("New airCondition added to router {}", airCondition.getName());
+        eventPublisher.publish(new NewCoolerEvent(cooler.getName()));
+        coolers.add(cooler);
+        LOGGER.info("New cooler added to router {}", cooler.getName());
     }
 
 
@@ -116,21 +117,21 @@ public class SmartHomeRouter {
     }
 
     public void initAppliances() {
-        initAirConditioners();
+        initCoolers();
         initHeaters();
     }
 
-    private void initAirConditioners() {
+    private void initCoolers() {
         temperatureSensorStream.buffer(switchBuffer).map(t -> t.stream().mapToInt(i -> i.getTemperature()).average().getAsDouble())
                 .subscribe(currentTemperature -> {
-                    airConditioners.forEach(airCondition -> {
-                        boolean acState = currentTemperature > acLimit;
-                        if (acState && !airCondition.isTurnedOn()) {
-                            airCondition.turnOn();
-                            eventPublisher.publish(new AirConditionStateChangedEvent(airCondition.getName(), true));
-                        } else if (!acState && airCondition.isTurnedOn()) {
-                            airCondition.turnOff();
-                            eventPublisher.publish(new AirConditionStateChangedEvent(airCondition.getName(), false));
+                    coolers.forEach(cooler -> {
+                        boolean acState = currentTemperature > coolerLimit;
+                        if (acState && !cooler.isTurnedOn()) {
+                            cooler.turnOn();
+                            eventPublisher.publish(new CoolerStateChangedEvent(cooler.getName(), true));
+                        } else if (!acState && cooler.isTurnedOn()) {
+                            cooler.turnOff();
+                            eventPublisher.publish(new CoolerStateChangedEvent(cooler.getName(), false));
                         }
                     });
                 });
@@ -156,8 +157,8 @@ public class SmartHomeRouter {
         return availableSensors;
     }
 
-    public List<AirConditioner> getAirConditioners() {
-        return airConditioners;
+    public List<Cooler> getCoolers() {
+        return coolers;
     }
 
     public List<Heater> getHeaters() {

@@ -6,13 +6,13 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by martin.ilievski on 11/19/2015.
  */
-public class AirConditioner implements Appliance {
+public class Cooler implements Appliance {
 
-    private Logger logger = LoggerFactory.getLogger(AirConditioner.class);
+    private Logger logger = LoggerFactory.getLogger(Cooler.class);
     private String name;
     private boolean isTurnedOn;
 
-    public AirConditioner(String name) {
+    public Cooler(String name) {
         this.name = name;
     }
 
@@ -28,13 +28,13 @@ public class AirConditioner implements Appliance {
 
     @Override
     public void turnOn() {
-        logger.info("Turning on AirConditioner " + getName());
+        logger.info("Turning on Cooler " + getName());
         isTurnedOn = true;
     }
 
     @Override
     public void turnOff() {
-        logger.info("Turning off AirConditioner " + getName());
+        logger.info("Turning off Cooler " + getName());
         isTurnedOn = false;
     }
 }

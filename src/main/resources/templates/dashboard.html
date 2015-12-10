@@ -37,13 +37,13 @@
     </div>
 
     <div class="row">
-        <ul class='list col-md-6 panel panel-default' style="float: left; width: 49%;" id="airconditioners">
-            <span class="label label-primary">Air Conditioners</span>
-            <li class='list__item' th:id="${ac.getName()}" th:each="ac : ${availableAirconditioners}">
-                <span th:id="${ac.getName()+'Name'}" th:text="${ac.getName()}"/>
+        <ul class='list col-md-6 panel panel-default' style="float: left; width: 49%;" id="coolers">
+            <span class="label label-primary">Coolers</span>
+            <li class='list__item' th:id="${cooler.getName()}" th:each="cooler : ${availableCoolers}">
+                <span th:id="${cooler.getName()+'Name'}" th:text="${cooler.getName()}"/>
                 <label class="switch switch--list-item">
-                    <input onclick="return false" type="checkbox" th:checked="${ac.isTurnedOn()}" class="switch__input"
-                           th:id="${ac.getName()+'State'}"/>
+                    <input onclick="return false" type="checkbox" th:checked="${cooler.isTurnedOn()}" class="switch__input"
+                           th:id="${cooler.getName()+'State'}"/>
 
                     <div class="switch__toggle"></div>
                 </label>

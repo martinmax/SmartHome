@@ -7,7 +7,6 @@ client.heartbeat.incoming = 0;
 var onConnect = function () {
     console.log('connected');
     registerSubsribers()
-    registerPublishers()
 };
 
 var onError = function () {
@@ -17,17 +16,14 @@ var onError = function () {
 client.connect('guest', 'guest', onConnect, onError, '/');
 
 function registerSubsribers() {
-    newAirConditionEvent = client.subscribe("/queue/newAirConditionEvent", newAirConditionEventCallback);
+    newCoolerEvent = client.subscribe("/queue/newCoolerEvent", newCoolerEventCallback);
     newHeaterEvent = client.subscribe("/queue/newHeaterEvent", newHeaterEventCallback);
     newSensorEvent = client.subscribe("/queue/newSensorEvent", newSensorEventCallback);
     temperatureChangedEvent = client.subscribe("/queue/temperatureChangedEvent", temperatureChangedEventCallback);
-    airConditionStateEvent = client.subscribe("/queue/airConditionStateEvent", airConditionStateEventCallback);
+    coolerStateEvent = client.subscribe("/queue/coolerStateEvent", coolerStateEventCallback);
     averageTemperatureEvent = client.subscribe("/queue/averageTemperatureEvent", averageTemperatureEventCallback);
     heaterStateEvent = client.subscribe("/queue/heaterStateEvent", heaterStateEventCallback);
     sensorStateEvent = client.subscribe("/queue/sensorStateEvent", sensorStateEventCallback);
-}
-
-function registerPublishers() {
 }
 
 var temperatureChangedEventCallback = function (data) {
@@ -36,7 +32,7 @@ var temperatureChangedEventCallback = function (data) {
     sensorTemperature.text(jsonData.currentTemperature)
 }
 
-var airConditionStateEventCallback = function (data) {
+var coolerStateEventCallback = function (data) {
     changeApplianceState(data);
 }
 
@@ -91,8 +87,8 @@ var averageTemperatureEventCallback = function (data) {
         chart.series[0].addPoint(jsonData.averageTemperature, true, true);
 }
 
-var newAirConditionEventCallback = function (data) {
-    createNewAppliance(data, "airconditioners");
+var newCoolerEventCallback = function (data) {
+    createNewAppliance(data, "coolers");
 }
 
 var newHeaterEventCallback = function (data) {
@@ -147,8 +143,8 @@ function changeSensorState(data) {
 
 function changeApplianceState(data) {
     var jsonData = jQuery.parseJSON(eval(data.body));
-    var acState = $("#" + jsonData.name + "State");
-    acState.prop('checked', jsonData.state);
+    var applicanceState = $("#" + jsonData.name + "State");
+    applicanceState.prop('checked', jsonData.state);
 }
 
 function disableSensor(name) {

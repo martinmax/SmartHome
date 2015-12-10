@@ -7,6 +7,7 @@ import javaskop.demo.smarthome.core.event.Event;
  * Created by martin.ilievski on 11/20/2015.
  */
 public class HeaterStateChangedEvent implements Event {
+
     private String name;
     private boolean state;
 

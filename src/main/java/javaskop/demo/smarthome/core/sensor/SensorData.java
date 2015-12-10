@@ -4,6 +4,7 @@ package javaskop.demo.smarthome.core.sensor;
  * Created by martin.ilievski on 11/20/2015.
  */
 public class SensorData {
+
     private Integer temperature;
     private String name;
 
